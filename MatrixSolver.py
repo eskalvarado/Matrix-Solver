@@ -1,6 +1,6 @@
-#Makes a nxn matrix from the data file. 
+# Makes a nxn matrix from the data file.
 def InputMatrix(txt):
-	f = open(txt,"r")
+	f = open(txt, "r")
 	m = []
 	row = 0
 	for line in f.readlines():
@@ -9,10 +9,11 @@ def InputMatrix(txt):
 			try:
 				m[row].append(float(i))
 			except ValueError:
-				pass 
-		row+=1
+				pass
+		row += 1
 	f.close()
 	return m
+
 
 # Characteristic Variables
 m = InputMatrix("data.txt")
@@ -21,10 +22,11 @@ colsize = len(m[0])
 
 # Prints matrix in a readable manner
 def MatrixPrinter(matrix):
-	i=0
+	i = 0
 	for row in matrix:
 		print("%s %i" %(row, i))
-		i+=1
+		i += 1
+
 
 MatrixPrinter(m)
 
@@ -35,7 +37,7 @@ def rowop(row1, row2, num, matrix):
 	# print(matrix)
 
 # Multiplies a row by a certain number.
-def rowmult(row,num,matrix):
+def rowmult(row, num, matrix):
 	colsize = len(matrix[0])
 	for colm in range(colsize):
 		matrix[row][colm] = num * matrix[row][colm]
@@ -70,7 +72,7 @@ def ContinueModule1(contvar):
 
 # The I/O function of the rowop function.
 def rowopInput(m):
-	i=True
+	i = True
 	while i == True:
 		rowchanged = int(input("row to change: "))
 		rowchanger = int(input("row to add or subtract: "))
@@ -82,17 +84,18 @@ def rowopInput(m):
 
 # The I/O function of the rowmult function.
 def rowmultInput(m):
-	j=True
+	j = True
 	while j == True:
 		rowtochange = int(input("row to multiply: "))
-		multiby =  float(input("multiply by how much: "))
-		rowmult(rowtochange,multiby,m)
+		multiby = float(input("multiply by how much: "))
+		rowmult(rowtochange, multiby, m)
 		MatrixPrinter(m)
 		print("\n")
 		j = ContinueModule(j)
 
+
 # Menu for selecting which, if any, operation to run.
-a=True
+a = True
 while a == True:
 	action = input("rowop or rowmult? ")
 	if action == "rowop":
@@ -104,16 +107,16 @@ while a == True:
 		continue
 	a = ContinueModule1(a)
 
-# Final Matrix	
+# Final Matrix
 print("final Matrix")
 MatrixPrinter(m)
 print("\n")
 
 # Prints the resulting constants.
-i=0
+i = 0
 for row in m:
-	print("c%i %s" %(i,row[colsize-1]))
-	i+=1
+	print("c%i %s" %(i, row[colsize-1]))
+	i += 1
 # Checks if correct matrix has been solved correctly
 if m[0][0] == 1 and m[1][1] == 1 and m[0][1] == 0 and m[1][0] == 0:
 	print("###CORRECT CONSTANTS###")
